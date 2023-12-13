@@ -146,14 +146,7 @@ def forcing_to_zarr(input_dir: str, zarr_output_path: str, fn_prefix: str='data'
     data_list = glob(input_dir + f'/{fn_prefix}*')
     
     #open all of the netcdf files and compile, save as zarr file
-    with dask_start_cluster(
-                                workers=6,
-                                threads=2,
-                                ip_address='http://dshydro.ce.washington.edu',
-                                port=":8786",
-                                open_browser=False,
-                                verbose=True,
-                                ) as client:
+    with dask_start_cluster(workers=6, threads=2, verbose=False) as client:
         
         # Open multifile dataset
         # Open all the raster files as a single dataset (combining them together)
